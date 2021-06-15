@@ -12,7 +12,14 @@ class MessageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) => const MessagesBottomSheet(),
+        );
+
+        if (onTap != null) onTap!();
+      },
       child: Card(
         elevation: 4,
         shape: const RoundedRectangleBorder(
@@ -23,6 +30,23 @@ class MessageButton extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: SvgPicture.asset("assets/icons/message.svg", width: 30),
         ),
+      ),
+    );
+  }
+}
+
+class MessagesBottomSheet extends StatelessWidget {
+  const MessagesBottomSheet({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      color: Colors.white,
+      child: const Center(
+        child: Text("Message dialogs Here"),
       ),
     );
   }
