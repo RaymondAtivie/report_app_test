@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:report_app/models/client.dart';
 
+import '../models/client.dart';
 import '../repositories/client_repo.dart';
 import '../utils/max_width_container.dart';
 import '../utils/responsive_layout.dart';
 import '../widgets/card_data_metric.dart';
 import '../widgets/client_tile.dart';
 import '../widgets/header_title.dart';
+import '../widgets/message_button.dart';
 import '../widgets/navigation_buttons.dart';
 import '../widgets/reciept_button.dart';
 import '../widgets/search_text_field.dart';
 import '../widgets/sidebar_drawer.dart';
 
-class PaidClientsScreen extends StatelessWidget {
-  const PaidClientsScreen({Key? key}) : super(key: key);
+class UnpaidClientsScreen extends StatelessWidget {
+  const UnpaidClientsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class PotraitArrangement extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final clients = watch(clientListProvider(ClientStatus.paid)).state;
+    final clients = watch(clientListProvider(ClientStatus.unpaid)).state;
 
     var totalPrice = 0;
     for (final client in clients) {
@@ -45,9 +46,10 @@ class PotraitArrangement extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       children: [
         const SizedBox(height: 24),
-        const HeaderTitle(title: "Paid"),
+        const HeaderTitle(title: "UnPaid"),
         const SizedBox(height: 24),
         CardDataMetric(
+          color: Colors.red,
           total: totalPrice,
           noOfClients: clients.length,
         ),
@@ -59,7 +61,7 @@ class PotraitArrangement extends ConsumerWidget {
             name: client.name,
             price: client.price.toString(),
             imageUrl: client.image,
-            leading: const RecieptButton(),
+            leading: const MessageButton(),
           ),
         const SizedBox(height: 24),
         const NavigationButtons(),
@@ -74,7 +76,7 @@ class LandscapeArrangement extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final clients = watch(clientListProvider(ClientStatus.paid)).state;
+    final clients = watch(clientListProvider(ClientStatus.unpaid)).state;
 
     return SafeArea(
       child: Padding(

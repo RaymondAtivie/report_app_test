@@ -24,38 +24,23 @@ final clientsProvider = FutureProvider<List<Client>>((ref) {
   return ref.watch(clientRepoProvider).getAll();
 });
 
-final paidClientsProvider = StateProvider<List<Client>>((ref) {
+final searchTermProvider = StateProvider<String>((ref) => "");
+
+final clientListProvider =
+    StateProvider.family<List<Client>, ClientStatus>((ref, clientStatus) {
   final clients = ref.watch(clientsProvider);
+  final search = ref.watch(searchTermProvider).state;
 
   return clients.when<List<Client>>(
     data: (clients) {
-      return clients.where((c) => c.status == ClientStatus.paid).toList();
+      return clients
+          .where((c) => c.name.toLowerCase().contains(search.toLowerCase()))
+          .toList()
+          .where((c) => c.status == clientStatus)
+          .toList();
     },
     loading: () => [],
     error: (_, __) {
-      return [];
-    },
-  );
-});
-
-final unpaidClientsProvider = Provider<List<Client>>((ref) {
-  final clients = ref.watch(clientsProvider);
-  return clients.when(
-    data: (clients) =>
-        clients.where((c) => c.status == ClientStatus.unpaid).toList(),
-    loading: () => [],
-    error: (_, __) => [],
-  );
-});
-
-final pendingClientsProvider = Provider<List<Client>>((ref) {
-  final clients = ref.watch(clientsProvider);
-  return clients.when(
-    data: (clients) =>
-        clients.where((c) => c.status == ClientStatus.pending).toList(),
-    loading: () => [],
-    error: (_, __) {
-      print(__);
       return [];
     },
   );

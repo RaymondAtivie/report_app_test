@@ -13,8 +13,8 @@ import '../widgets/reciept_button.dart';
 import '../widgets/search_text_field.dart';
 import '../widgets/sidebar_drawer.dart';
 
-class PaidClientsScreen extends StatelessWidget {
-  const PaidClientsScreen({Key? key}) : super(key: key);
+class PendingClientsScreen extends StatelessWidget {
+  const PendingClientsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +45,10 @@ class PotraitArrangement extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       children: [
         const SizedBox(height: 24),
-        const HeaderTitle(title: "Paid"),
+        const HeaderTitle(title: "Pending"),
         const SizedBox(height: 24),
         CardDataMetric(
+          color: Colors.orange,
           total: totalPrice,
           noOfClients: clients.length,
         ),
@@ -59,7 +60,6 @@ class PotraitArrangement extends ConsumerWidget {
             name: client.name,
             price: client.price.toString(),
             imageUrl: client.image,
-            leading: const RecieptButton(),
           ),
         const SizedBox(height: 24),
         const NavigationButtons(),

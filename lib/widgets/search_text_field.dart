@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:report_app/repositories/client_repo.dart';
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
@@ -8,6 +10,9 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: (newValue) {
+        context.read(searchTermProvider).state = newValue;
+      },
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
