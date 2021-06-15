@@ -1,0 +1,29 @@
+name: report_app
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+    sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+    flutter:
+        sdk: flutter
+    cupertino_icons: ^1.0.2
+    faker: ^2.0.0
+    flutter_riverpod: ^0.14.0+3
+    flutter_svg: ^0.22.0
+    google_fonts: ^2.1.0
+
+dev_dependencies:
+    flutter_test:
+        sdk: flutter
+    lint: ^1.5.3
+
+flutter:
+    uses-material-design: true
+    assets:
+        - assets/icons/message.svg
+        - assets/icons/clip.svg
