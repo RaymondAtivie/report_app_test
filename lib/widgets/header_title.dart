@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class HeaderTitle extends StatelessWidget {
+  final String title;
+
   const HeaderTitle({
     Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -17,7 +20,7 @@ class HeaderTitle extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(14.0),
           child: Text(
-            "PAID",
+            title.toUpperCase(),
             style: TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.w700,

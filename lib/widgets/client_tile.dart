@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ContactTile extends StatelessWidget {
+class ClientTile extends StatelessWidget {
   final Widget? leading;
   final String name;
   final String? imageUrl;
   final String? price;
 
-  const ContactTile({
+  const ClientTile({
     Key? key,
     this.leading,
     required this.name,
@@ -52,7 +52,8 @@ class ContactTile extends StatelessWidget {
                         width: 60,
                         height: 65,
                         child: Image.network(
-                          "https://randomuser.me/api/portraits/men/75.jpg",
+                          imageUrl ??
+                              "https://randomuser.me/api/portraits/men/75.jpg",
                           fit: BoxFit.cover,
                         ),
                       ),

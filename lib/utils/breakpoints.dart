@@ -1,1 +1,1 @@
-const kLandscapeBreakpoint = 768.0;
+const kLandscapeBreakpoint = 668.0;

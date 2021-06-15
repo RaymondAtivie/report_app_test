@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 class CardDataMetric extends StatelessWidget {
   final Color color;
+  final int total;
+  final int noOfClients;
 
   const CardDataMetric({
     Key? key,
     this.color = Colors.green,
+    required this.total,
+    required this.noOfClients,
   }) : super(key: key);
 
   @override
@@ -42,7 +46,7 @@ class CardDataMetric extends StatelessWidget {
                         child: Align(
                           child: FittedBox(
                             child: Text(
-                              "9",
+                              noOfClients.toString(),
                               style: TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.bold,
@@ -58,7 +62,7 @@ class CardDataMetric extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                "Total: 25000\$",
+                "Total: $total\$",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

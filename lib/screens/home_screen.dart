@@ -3,9 +3,10 @@ import 'package:report_app/utils/max_width_container.dart';
 import 'package:report_app/utils/responsive_layout.dart';
 import 'package:report_app/widgets/navigation_buttons.dart';
 import 'package:report_app/widgets/search_text_field.dart';
+import 'package:report_app/widgets/sidebar_drawer.dart';
 
 import '../widgets/card_data_metric.dart';
-import '../widgets/contact_tile.dart';
+import '../widgets/client_tile.dart';
 import '../widgets/header_title.dart';
 import '../widgets/message_button.dart';
 import '../widgets/reciept_button.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const SidebarDrawer(),
       appBar: AppBar(),
       body: const ResponsiveLayout(
         potrait: PotraitArrangement(),
@@ -34,21 +36,24 @@ class PotraitArrangement extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       children: const [
         SizedBox(height: 24),
-        HeaderTitle(),
+        HeaderTitle(title: "Paid"),
         SizedBox(height: 24),
-        CardDataMetric(),
+        CardDataMetric(
+          total: 1200,
+          noOfClients: 12,
+        ),
         SizedBox(height: 24),
         SearchTextField(),
         SizedBox(height: 24),
-        ContactTile(name: "Omar Catbi", leading: RecieptButton()),
+        ClientTile(name: "Omar Catbi", leading: RecieptButton()),
         SizedBox(height: 24),
-        ContactTile(
+        ClientTile(
           name: "Omar Catbi",
           price: "300",
           leading: MessageButton(),
         ),
         SizedBox(height: 24),
-        ContactTile(name: "Omar Catbi", price: "300"),
+        ClientTile(name: "Omar Catbi", price: "300"),
         SizedBox(height: 24),
         NavigationButtons(),
         SizedBox(height: 48),
@@ -64,7 +69,7 @@ class LandscapeArrangement extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: [
             MaxWidthContainer(
@@ -72,9 +77,12 @@ class LandscapeArrangement extends StatelessWidget {
                 child: Column(
                   children: const [
                     SizedBox(height: 24),
-                    HeaderTitle(),
+                    HeaderTitle(title: "Paid"),
                     SizedBox(height: 24),
-                    CardDataMetric(),
+                    CardDataMetric(
+                      total: 1200,
+                      noOfClients: 12,
+                    ),
                     SizedBox(height: 24),
                   ],
                 ),
@@ -87,15 +95,15 @@ class LandscapeArrangement extends StatelessWidget {
                 SizedBox(height: 24),
                 SearchTextField(),
                 SizedBox(height: 24),
-                ContactTile(name: "Omar Catbi", leading: RecieptButton()),
+                ClientTile(name: "Omar Catbi", leading: RecieptButton()),
                 SizedBox(height: 24),
-                ContactTile(
+                ClientTile(
                   name: "Omar Catbi",
                   price: "300",
                   leading: MessageButton(),
                 ),
                 SizedBox(height: 24),
-                ContactTile(name: "Omar Catbi", price: "300"),
+                ClientTile(name: "Omar Catbi", price: "300"),
                 SizedBox(height: 24),
                 NavigationButtons(),
                 SizedBox(height: 48),
@@ -104,27 +112,6 @@ class LandscapeArrangement extends StatelessWidget {
           ],
         ),
       ),
-    );
-
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      children: [
-        Row(
-          children: [
-            MaxWidthContainer(
-              child: Column(
-                children: const [
-                  SizedBox(height: 24),
-                  HeaderTitle(),
-                  SizedBox(height: 24),
-                  CardDataMetric(),
-                  SizedBox(height: 24),
-                ],
-              ),
-            )
-          ],
-        ),
-      ],
     );
   }
 }
